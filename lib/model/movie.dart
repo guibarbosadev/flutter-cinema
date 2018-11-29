@@ -4,7 +4,7 @@ class Movie {
   final String title;
   final String description;
   final String imagePath;
-  final double rate;
+  final String rate;
   
 
   Movie({

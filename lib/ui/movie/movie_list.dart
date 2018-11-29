@@ -18,19 +18,21 @@ class _MovieListState extends State<MovieList> {
     movies = [];
     MovieNetwork.listPopularMovie().then((response) {
       results = response['results'];
-      print('resultsLength ${results.length}');
-      setState(() {
-        results.forEach((movieItem) {
-          movies.add(
-            Movie(
+      if (results != null) {
+        setState(() {
+          results.forEach((movieItem) {
+            movies.add(
+              Movie(
                 description: movieItem['overview'],
                 title: movieItem['title'],
                 imagePath:
                     "https://image.tmdb.org/t/p/w500${movieItem['poster_path']}",
-                rate: movieItem['vote_average']),
-          );
+                rate: movieItem['vote_average'].toString(),
+              ),
+            );
+          });
         });
-      });
+      }
     });
     super.initState();
   }
