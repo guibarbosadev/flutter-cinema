@@ -13,9 +13,7 @@ class MovieListItem extends StatelessWidget {
       padding: EdgeInsets.all(8.0),
       child: IntrinsicHeight(
         child: GestureDetector(
-          onTap: () {
-            // TODO: navigate to details page
-          },
+          onTap: onTap,
           child: Card(
             elevation: 4.0,
             child: Row(

@@ -2,6 +2,7 @@ import 'package:cinema/model/movie.dart';
 import 'package:flutter/material.dart';
 import 'package:cinema/network/movie_network.dart';
 import 'movie_list_item.dart';
+import '../movie_details/movie_details_page.dart';
 
 class MovieList extends StatefulWidget {
   @override
@@ -37,6 +38,14 @@ class _MovieListState extends State<MovieList> {
     super.initState();
   }
 
+  _pushToDetailsPage(BuildContext context, Movie movie) {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (_) {
+        return MovieDetailsPage(movie: movie);
+      }
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -45,7 +54,7 @@ class _MovieListState extends State<MovieList> {
         return MovieListItem(
           movie: movies[index],
           onTap: () {
-            // TODO:
+            _pushToDetailsPage(context, movies[index]);
           },
         );
       },
