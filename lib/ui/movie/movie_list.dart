@@ -20,41 +20,46 @@ class _MovieListState extends State<MovieList> {
     MovieNetwork.listPopularMovie().then((response) {
       results = response['results'];
       if (results != null) {
+        print('results: ${results.length}');
         setState(() {
           results.forEach((movieItem) {
             movies.add(
               Movie(
+                id: movieItem['id'],
                 description: movieItem['overview'],
                 title: movieItem['title'],
-                imagePath:
-                    "https://image.tmdb.org/t/p/w500${movieItem['poster_path']}",
+                posterImagePath:
+                    "${movieItem['poster_path']}",
                 rate: movieItem['vote_average'].toString(),
               ),
             );
           });
         });
+      } else {
+        print("results é nulo");
       }
     });
     super.initState();
   }
 
-  _pushToDetailsPage(BuildContext context, Movie movie) {
+  _pushToDetailsPage(BuildContext context, int movieId) {
     Navigator.push(context, MaterialPageRoute(
       builder: (_) {
-        return MovieDetailsPage(movie: movie);
+        return MovieDetailsPage(movieId: movieId);
       }
     ));
   }
 
   @override
   Widget build(BuildContext context) {
+    print('movies:  ${movies.length}');
     return ListView.builder(
       itemCount: movies == null ? 0 : movies.length,
       itemBuilder: (BuildContext context, int index) {
         return MovieListItem(
           movie: movies[index],
           onTap: () {
-            _pushToDetailsPage(context, movies[index]);
+            _pushToDetailsPage(context, movies[index].id);
           },
         );
       },

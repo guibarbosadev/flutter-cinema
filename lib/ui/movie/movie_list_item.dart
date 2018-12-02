@@ -19,7 +19,7 @@ class MovieListItem extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Image.network(
-                  movie.imagePath,
+                  movie.posterUrl,
                   width: 100.0,
                 ),
                 Container(width: 10.0),
