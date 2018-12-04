@@ -36,6 +36,23 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
             body: ListView(
               children: <Widget>[
                 MovieDetailsHeader(movie: movie),
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Descrição',
+                        style: Theme.of(context).textTheme.title,
+                      ),
+                      Text(
+                        movie.description,
+                        style: Theme.of(context).textTheme.body2,
+                        maxLines: 6,
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           )
