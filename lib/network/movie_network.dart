@@ -15,7 +15,7 @@ abstract class MovieNetwork {
   }
 
   static Future<Map> getMovieDetails(int movieId) async {
-    String url = 'https://api.themoviedb.org/3/movie/$movieId?api_key=$apiKey&language=pt-BR&append_to_response=images&include_image_language=pt-BR,en';
+    String url = 'https://api.themoviedb.org/3/movie/$movieId?api_key=$apiKey&language=pt-BR&append_to_response=casts&include_image_language=pt-BR,en';
 
     var res = await http.get(url, headers: {
       'Accept': 'application/json'

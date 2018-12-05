@@ -1,6 +1,9 @@
+import 'package:cinema/model/cast.dart';
 import 'package:cinema/model/movie_detailed.dart';
 import 'package:cinema/network/movie_network.dart';
+import 'package:cinema/ui/movie_details/movie_details_description.dart';
 import 'package:cinema/ui/movie_details/movie_details_header.dart';
+import 'package:cinema/ui/util/rounded_image.dart';
 import 'package:flutter/material.dart';
 
 class MovieDetailsPage extends StatefulWidget {
@@ -13,6 +16,7 @@ class MovieDetailsPage extends StatefulWidget {
 
 class _MovieDetailsPageState extends State<MovieDetailsPage> {
   MovieDetailed movie;
+  List<Cast> casts;
 
   @override
   void initState() {
@@ -23,8 +27,9 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
   void _getMovieDetails(int movieId) async {
     MovieNetwork.getMovieDetails(movieId).then((response) {
       setState(() {
+        List data = response['casts']['cast'];
         movie = MovieDetailed.fromJson(response);
-        print('movieTitle: ${movie.genres.length}');
+        casts = data.map((i) => Cast.fromJson(i)).toList();
       });
     });
   }
@@ -36,21 +41,20 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
             body: ListView(
               children: <Widget>[
                 MovieDetailsHeader(movie: movie),
-                Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Descrição',
-                        style: Theme.of(context).textTheme.title,
-                      ),
-                      Text(
-                        movie.description,
-                        style: Theme.of(context).textTheme.body2,
-                        maxLines: 6,
-                      )
-                    ],
+                MovieDetailsDescription(description: movie.description),
+                Container(
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: RoundedImage(
+                          height: 80.0,
+                          width: 80.0,
+                          imageUrl: casts[index].profilePath,
+                        ),
+                      );
+                    },
                   ),
                 )
               ],
