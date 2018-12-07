@@ -1,6 +1,7 @@
 import 'package:cinema/model/cast.dart';
 import 'package:cinema/model/movie_detailed.dart';
 import 'package:cinema/network/movie_network.dart';
+import 'package:cinema/ui/movie_details/cast_list.dart';
 import 'package:cinema/ui/movie_details/movie_details_description.dart';
 import 'package:cinema/ui/movie_details/movie_details_header.dart';
 import 'package:cinema/ui/util/rounded_image.dart';
@@ -42,32 +43,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
               children: <Widget>[
                 MovieDetailsHeader(movie: movie),
                 MovieDetailsDescription(description: movie.description),
-                SizedBox(
-                  height: 120.0,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: casts.sublist(0, 10).length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Column(
-                          children: <Widget>[
-                            CircleAvatar(
-                              backgroundImage:
-                                  NetworkImage(casts[index].profilePath),
-                              radius: 40.0,
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(top: 8.0),
-                              child: Text(casts[index].name),
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                )
+                CastList(casts: casts)
               ],
             ),
           )

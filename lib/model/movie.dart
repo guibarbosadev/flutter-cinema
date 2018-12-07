@@ -20,8 +20,6 @@ class Movie {
     @required posterImagePath,
     @required this.id
   }) {
-    print('passando pelo constructor');
     posterUrl = posterImagePath;
-    print(posterUrl);
   }
 }

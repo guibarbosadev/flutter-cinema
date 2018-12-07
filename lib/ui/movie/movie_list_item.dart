@@ -11,28 +11,26 @@ class MovieListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(8.0),
-      child: IntrinsicHeight(
-        child: GestureDetector(
-          onTap: onTap,
-          child: Card(
-            elevation: 4.0,
-            child: Row(
-              children: <Widget>[
-                Image.network(
-                  movie.posterUrl,
-                  width: 100.0,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Card(
+          elevation: 4.0,
+          child: Row(
+            children: <Widget>[
+              Image.network(
+                movie.posterUrl,
+                width: 100.0,
+              ),
+              Container(width: 10.0),
+              Expanded(
+                child: Column(
+                  children: <Widget>[
+                    new Title(movie: movie),
+                    new Description(movie: movie),
+                  ],
                 ),
-                Container(width: 10.0),
-                Expanded(
-                  child: Column(
-                    children: <Widget>[
-                      new Title(movie: movie),
-                      new Description(movie: movie),
-                    ],
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),

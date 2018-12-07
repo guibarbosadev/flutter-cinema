@@ -20,7 +20,6 @@ class _MovieListState extends State<MovieList> {
     MovieNetwork.listPopularMovie().then((response) {
       results = response['results'];
       if (results != null) {
-        print('results: ${results.length}');
         setState(() {
           results.forEach((movieItem) {
             movies.add(
@@ -35,8 +34,6 @@ class _MovieListState extends State<MovieList> {
             );
           });
         });
-      } else {
-        print("results é nulo");
       }
     });
     super.initState();
@@ -52,7 +49,6 @@ class _MovieListState extends State<MovieList> {
 
   @override
   Widget build(BuildContext context) {
-    print('movies:  ${movies.length}');
     return ListView.builder(
       itemCount: movies == null ? 0 : movies.length,
       itemBuilder: (BuildContext context, int index) {

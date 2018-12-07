@@ -16,7 +16,7 @@ class MovieDetailsHeader extends StatelessWidget {
     return Stack(
       children: <Widget>[
         _buildHeaderImage(context, movie.backdropUrl),
-        _buildBackButton(context),
+        buildBackButton(context),
         Positioned(
           bottom: 0,
           left: 0,
@@ -98,14 +98,14 @@ class MovieDetailsHeader extends StatelessWidget {
     );
   }
 
-  Widget _buildBackButton(BuildContext context) {
+  Widget buildBackButton(BuildContext context) {
     return Positioned(
       left: 10.0,
       top: 25.0,
       child: IconButton(
         iconSize: 30.0,
         icon: Icon(Icons.arrow_back),
-        color: Colors.white,
+        color: Colors.purple,
         onPressed: () {},
       ),
     );
