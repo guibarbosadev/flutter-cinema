@@ -1,4 +1,4 @@
-# Resumo
+# Resume
 
 Movie details app done in flutter
 
