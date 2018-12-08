@@ -1,8 +1,10 @@
-# cinema
+# Resumo
 
-A new Flutter project.
+Movie details app done in flutter
 
-## Getting Started
+## Why did i do it ?
+  Improve my skils :)
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+## Screenshots
+![Homepage screenshot](screenshot/screenshot_home.png)
+![Movie details screenshot](screenshot/screenshot_details.png)
