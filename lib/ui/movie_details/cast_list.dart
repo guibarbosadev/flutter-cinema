@@ -2,10 +2,10 @@ import 'package:cinema/model/cast.dart';
 import 'package:flutter/material.dart';
 
 class CastList extends StatelessWidget {
-  const CastList({
+  CastList({
     Key key,
     @required this.casts,
-  }) : super(key: key);
+  });
 
   final List<Cast> casts;
 
@@ -16,7 +16,7 @@ class CastList extends StatelessWidget {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: casts.sublist(0, 10).length,
+        itemCount: casts.sublist(0, casts.length > 10 ? 10 : casts.length).length,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),

@@ -4,7 +4,6 @@ import 'package:cinema/network/movie_network.dart';
 import 'package:cinema/ui/movie_details/cast_list.dart';
 import 'package:cinema/ui/movie_details/movie_details_description.dart';
 import 'package:cinema/ui/movie_details/movie_details_header.dart';
-import 'package:cinema/ui/util/rounded_image.dart';
 import 'package:flutter/material.dart';
 
 class MovieDetailsPage extends StatefulWidget {
@@ -31,9 +30,14 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
         List data = response['casts']['cast'];
         movie = MovieDetailed.fromJson(response);
         casts = data.map((i) => Cast.fromJson(i)).toList();
+        casts = _castsWithImage(casts);
       });
     });
   }
+
+  List<Cast> _castsWithImage(List<Cast> casts) {
+    return casts.where((cast) => cast.profilePath != null).toList();
+  } 
 
   @override
   Widget build(BuildContext context) {

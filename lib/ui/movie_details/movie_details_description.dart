@@ -36,7 +36,7 @@ class MovieDetailsDescriptionState extends State<MovieDetailsDescription> {
           Text(
             widget.description,
             style: Theme.of(context).textTheme.body1.copyWith(fontSize: 16.0),
-            maxLines: shouldExpand ? null : 6,
+            maxLines: shouldExpand ? null : 3,
           ),
           Center(
             child: Padding(
